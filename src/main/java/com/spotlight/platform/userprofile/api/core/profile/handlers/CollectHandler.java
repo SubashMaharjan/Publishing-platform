@@ -1,5 +1,6 @@
 package com.spotlight.platform.userprofile.api.core.profile.handlers;
 
+import com.spotlight.platform.userprofile.api.core.exceptions.ValidationException;
 import com.spotlight.platform.userprofile.api.core.profile.persistence.UserProfileDao;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.EventType;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyName;
@@ -28,7 +29,7 @@ public class CollectHandler extends AbstractEventHandler implements IEventHandle
         }
         var existingData = existingValue.getValue();
         if (!(existingData instanceof Collection)) {
-            throw new IllegalArgumentException("Existing Value is not Type Collection");
+            throw new ValidationException("Existing Value is not Type Collection");
         }
         Collection<?> newData = (Collection<?>) data.getValue()
                                                .getValue();

@@ -1,5 +1,6 @@
 package com.spotlight.platform.userprofile.api.core.profile;
 
+import com.spotlight.platform.userprofile.api.core.exceptions.ValidationException;
 import com.spotlight.platform.userprofile.api.core.profile.handlers.IEventHandler;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.EventType;
 
@@ -27,7 +28,7 @@ public class UserEventHandlerFactory {
 
     public IEventHandler getHandler(EventType eventType) {
         if (!eventHandlers.containsKey(eventType)) {
-            throw new IllegalArgumentException("Cannot Handle this eventType");
+            throw new ValidationException("Cannot Handle this eventType");
         }
         return eventHandlers.get(eventType);
     }

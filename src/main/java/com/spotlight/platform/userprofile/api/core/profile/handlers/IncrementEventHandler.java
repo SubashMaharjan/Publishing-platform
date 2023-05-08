@@ -1,5 +1,6 @@
 package com.spotlight.platform.userprofile.api.core.profile.handlers;
 
+import com.spotlight.platform.userprofile.api.core.exceptions.ValidationException;
 import com.spotlight.platform.userprofile.api.core.profile.persistence.UserProfileDao;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.EventType;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyName;
@@ -32,7 +33,7 @@ public class IncrementEventHandler extends AbstractEventHandler implements IEven
                                              .getValue()
                                              .toString());
         if (!NumberUtils.isDigits(value)) {
-            throw new IllegalArgumentException("Existing Value is a Not a Number");
+            throw new ValidationException("Existing Value is a Not a Number");
         }
         var propertyValue = UserProfilePropertyValue.valueOf(newValue + NumberUtils.toInt(value, 0));
         data.setValue(propertyValue);

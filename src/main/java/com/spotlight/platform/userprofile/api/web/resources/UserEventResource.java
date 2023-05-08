@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/user")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -29,6 +30,12 @@ public class UserEventResource {
     @POST
     public UserProfile event(@Valid UserEvent userEvent) {
         return userEventService.handleEvent(userEvent);
+    }
+
+    @Path("events")
+    @POST
+    public List<UserProfile> events(@Valid List<UserEvent> userEvents) {
+        return userEventService.handleEvents(userEvents);
     }
 
 }
