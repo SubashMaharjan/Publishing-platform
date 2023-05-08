@@ -2,7 +2,14 @@ package com.spotlight.platform.userprofile.api.web.modules;
 
 import com.google.inject.AbstractModule;
 
+import com.google.inject.multibindings.Multibinder;
+import com.spotlight.platform.userprofile.api.core.profile.UserEventService;
+import com.spotlight.platform.userprofile.api.core.profile.UserEventHandlerFactory;
 import com.spotlight.platform.userprofile.api.core.profile.UserProfileService;
+import com.spotlight.platform.userprofile.api.core.profile.handlers.CollectHandler;
+import com.spotlight.platform.userprofile.api.core.profile.handlers.IEventHandler;
+import com.spotlight.platform.userprofile.api.core.profile.handlers.IncrementEventHandler;
+import com.spotlight.platform.userprofile.api.core.profile.handlers.ReplaceEventHandler;
 import com.spotlight.platform.userprofile.api.core.profile.persistence.UserProfileDao;
 import com.spotlight.platform.userprofile.api.core.profile.persistence.UserProfileDaoInMemory;
 
@@ -11,7 +18,18 @@ import javax.inject.Singleton;
 public class ProfileModule extends AbstractModule {
     @Override
     protected void configure() {
+        addEventHandler();
         bind(UserProfileDao.class).to(UserProfileDaoInMemory.class).in(Singleton.class);
         bind(UserProfileService.class).in(Singleton.class);
+        bind(UserEventHandlerFactory.class).in(Singleton.class);
+        bind(UserEventService.class).in(Singleton.class);
+    }
+
+    private void addEventHandler() {
+        Multibinder<IEventHandler> multibinder
+                = Multibinder.newSetBinder(binder(), IEventHandler.class);
+        multibinder.addBinding().to(CollectHandler.class).in(Singleton.class);
+        multibinder.addBinding().to(IncrementEventHandler.class).in(Singleton.class);
+        multibinder.addBinding().to(ReplaceEventHandler.class).in(Singleton.class);
     }
 }
