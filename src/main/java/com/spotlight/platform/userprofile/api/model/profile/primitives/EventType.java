@@ -10,7 +10,7 @@ public enum EventType {
     COLLECT;
 
 
-    public static Set<EventType> eventTypes= Set.of(EventType.values());
+    public static final Set<EventType> eventTypes= Set.of(EventType.values());
 
     @JsonCreator
     public static EventType forValues(String value) {

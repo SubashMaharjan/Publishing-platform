@@ -8,9 +8,7 @@ import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfi
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectHandler extends AbstractEventHandler implements IEventHandler {

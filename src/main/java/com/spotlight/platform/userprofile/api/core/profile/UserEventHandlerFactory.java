@@ -5,7 +5,6 @@ import com.spotlight.platform.userprofile.api.core.profile.handlers.IEventHandle
 import com.spotlight.platform.userprofile.api.model.profile.primitives.EventType;
 
 import javax.inject.Inject;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
@@ -19,7 +18,7 @@ public class UserEventHandlerFactory {
     public UserEventHandlerFactory(Set<IEventHandler> handlers) {
         this.eventHandlers = handlers.stream()
                                      .collect(
-                                             Collectors.toMap(e->e.supports(),
+                                             Collectors.toMap(IEventHandler::supports,
                                                               Function.identity()
                                              )
                                      );

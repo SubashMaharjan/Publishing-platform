@@ -1,8 +1,6 @@
 package com.spotlight.platform.userprofile.api.core.profile.handlers;
 
 import com.spotlight.platform.userprofile.api.core.profile.persistence.UserProfileDao;
-import com.spotlight.platform.userprofile.api.model.profile.UserEvent;
-import com.spotlight.platform.userprofile.api.model.profile.UserProfile;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.EventType;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyName;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyValue;

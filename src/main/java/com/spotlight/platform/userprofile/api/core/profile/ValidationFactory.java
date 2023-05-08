@@ -18,7 +18,7 @@ public class ValidationFactory {
     public ValidationFactory(Set<IValidator> validators) {
         this.validators = validators.stream()
                                   .collect(
-                                          Collectors.toMap(e->e.supports(),
+                                          Collectors.toMap(IValidator::supports,
                                                            Function.identity()
                                           )
                                   );
