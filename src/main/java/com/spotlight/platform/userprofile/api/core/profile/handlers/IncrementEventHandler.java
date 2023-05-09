@@ -36,8 +36,7 @@ public class IncrementEventHandler extends AbstractEventHandler implements IEven
             throw new ValidationException("Existing Value is a Not a Number");
         }
         var propertyValue = UserProfilePropertyValue.valueOf(newValue + NumberUtils.toInt(value, 0));
-        data.setValue(propertyValue);
-        return data;
+        return Map.entry(data.getKey(), propertyValue);
     }
 
 

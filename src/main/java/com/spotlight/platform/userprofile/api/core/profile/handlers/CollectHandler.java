@@ -32,11 +32,10 @@ public class CollectHandler extends AbstractEventHandler implements IEventHandle
         Collection<?> newData = (Collection<?>) data.getValue()
                                                .getValue();
 
-        var newCollection = Stream.concat(newData.stream(),
-                                          ((Collection<?>) existingData).stream())
+        var newCollection = Stream.concat(((Collection<?>) existingData).stream(),
+                                          newData.stream())
                                   .toList();
-        data.setValue(UserProfilePropertyValue.valueOf(newCollection));
-        return data;
+        return Map.entry(data.getKey(),UserProfilePropertyValue.valueOf(newCollection));
     }
 
     @Override

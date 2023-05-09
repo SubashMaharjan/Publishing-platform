@@ -18,7 +18,7 @@ public class UserEvent {
 
     @NotNull private EventType type;
 
-    @Valid @NotNull private Map<UserProfilePropertyName, UserProfilePropertyValue> properties;
+    @Valid @NotNull private Map<@Valid UserProfilePropertyName, @Valid UserProfilePropertyValue> properties;
 
 
     @JsonCreator
@@ -31,27 +31,22 @@ public class UserEvent {
         this.properties= properties;
     }
 
+    @JsonProperty
     public UserId getUserId() {
         return userId;
     }
 
-    public void setUserId(UserId userId) {
-        this.userId = userId;
-    }
 
+    @JsonProperty
     public EventType getType() {
         return type;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
-    }
 
+    @JsonProperty
     public Map<UserProfilePropertyName, UserProfilePropertyValue> getProperties() {
         return properties;
     }
 
-    public void setProperties(Map<UserProfilePropertyName, UserProfilePropertyValue> properties) {
-        this.properties = properties;
-    }
+
 }
