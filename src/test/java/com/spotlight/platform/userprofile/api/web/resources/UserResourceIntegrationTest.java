@@ -10,6 +10,7 @@ import com.spotlight.platform.userprofile.api.model.profile.primitives.UserId;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfileFixtures;
 import com.spotlight.platform.userprofile.api.web.UserProfileApiApplication;
 
+import com.spotlight.platform.userprofile.api.web.modules.MongoModule;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,13 +37,14 @@ class UserResourceIntegrationTest {
     @RegisterExtension
     static TestDropwizardAppExtension APP = TestDropwizardAppExtension.forApp(UserProfileApiApplication.class)
             .randomPorts()
+            .config("configuration.yaml")
             .hooks(builder -> builder.modulesOverride(new AbstractModule() {
                 @Provides
                 @Singleton
                 public UserProfileDao getUserProfileDao() {
                     return mock(UserProfileDao.class);
                 }
-            }))
+            }).disableModules(MongoModule.class))
             .randomPorts()
             .create();
 

@@ -5,10 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserId;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyName;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfilePropertyValue;
+import org.mongojack.ObjectId;
+
 
 import java.time.Instant;
 import java.util.Map;
 
-public record UserProfile(@JsonProperty UserId userId, @JsonProperty @JsonFormat(shape = JsonFormat.Shape.STRING) Instant latestUpdateTime,
+
+public record UserProfile(@JsonProperty("_id") @ObjectId UserId userId, @JsonProperty @JsonFormat(shape = JsonFormat.Shape.STRING) Instant latestUpdateTime,
                           @JsonProperty Map<UserProfilePropertyName, UserProfilePropertyValue> userProfileProperties) {
 }

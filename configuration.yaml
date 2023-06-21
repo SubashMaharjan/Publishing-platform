@@ -1,0 +1,5 @@
+databaseType: inMemory
+
+mongoDBConnection:
+  connectionUri: mongodb+srv://subash:subash@userprofile.ivuka.mongodb.net/?retryWrites=true&w=majority
+  database: "Users"

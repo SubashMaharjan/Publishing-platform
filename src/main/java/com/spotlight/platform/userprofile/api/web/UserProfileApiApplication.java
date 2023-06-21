@@ -1,9 +1,12 @@
 package com.spotlight.platform.userprofile.api.web;
 
 import com.spotlight.platform.userprofile.api.core.json.JsonMapper;
+import com.spotlight.platform.userprofile.api.core.mongo.MongoDBFactoryConnection;
+import com.spotlight.platform.userprofile.api.core.mongo.MongoDBManaged;
 import com.spotlight.platform.userprofile.api.model.configuration.UserProfileApiConfiguration;
 import com.spotlight.platform.userprofile.api.web.exceptionmappers.EntityNotFoundExceptionMapper;
 import com.spotlight.platform.userprofile.api.web.healthchecks.PreventStartupWarningHealthCheck;
+import com.spotlight.platform.userprofile.api.web.modules.ProfileModule;
 import com.spotlight.platform.userprofile.api.web.modules.UserProfileApiModule;
 
 import io.dropwizard.core.Application;
@@ -25,7 +28,7 @@ public class UserProfileApiApplication extends Application<UserProfileApiConfigu
         super.initialize(bootstrap);
         guiceBundle = GuiceBundle.builder()
                 .enableAutoConfig(getClass().getPackage().getName())
-                .modules(new UserProfileApiModule())
+                .modules(new UserProfileApiModule(), new ProfileModule())
                 .printDiagnosticInfo()
                 .build();
         bootstrap.addBundle(guiceBundle);
@@ -37,6 +40,9 @@ public class UserProfileApiApplication extends Application<UserProfileApiConfigu
         registerHealthChecks(environment);
         registerExceptionMappers(environment);
     }
+
+
+
 
     public static void main(String[] args) throws Exception {
         new UserProfileApiApplication().run(args);

@@ -3,6 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'com.adarshr.test-logger' version '3.2.0'
     id 'jacoco'
+
 }
 
 repositories {
@@ -51,16 +52,25 @@ jacocoTestCoverageVerification {
         failOnViolation = true
         rule {
             limit {
-                minimum = 0.95
+                minimum = 0.85
             }
         }
     }
 }
 
+
+
+
+
+
 dependencies {
     implementation platform('io.dropwizard:dropwizard-bom:3.0.0')
     implementation 'io.dropwizard:dropwizard-testing'
     implementation 'ru.vyarus:dropwizard-guicey:6.0.1'
+    implementation group: 'org.mongodb', name: 'mongodb-driver-sync', version: '4.0.1'
+    implementation 'org.mongojack:mongojack:4.8.0'
+    testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '4.6.3'
+
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'

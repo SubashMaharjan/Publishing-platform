@@ -11,6 +11,7 @@ import com.spotlight.platform.userprofile.api.model.profile.primitives.UserId;
 import com.spotlight.platform.userprofile.api.model.profile.primitives.UserProfileFixtures;
 import com.spotlight.platform.userprofile.api.web.UserProfileApiApplication;
 import com.spotlight.platform.userprofile.api.web.exceptionmappers.ErrorResponse;
+import com.spotlight.platform.userprofile.api.web.modules.MongoModule;
 import org.assertj.core.api.Assertions;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +42,7 @@ class UserEventResourceTest {
                                                                           public UserProfileDao getUserProfileDao() {
                                                                               return mock(UserProfileDao.class);
                                                                           }
-                                                                      }))
+                                                                      }).disableModules(MongoModule.class))
                                                                       .randomPorts()
                                                                       .create();
 

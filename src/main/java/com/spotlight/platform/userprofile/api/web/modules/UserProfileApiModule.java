@@ -1,12 +1,14 @@
 package com.spotlight.platform.userprofile.api.web.modules;
 
-import com.google.inject.Binder;
-import com.google.inject.Module;
 
-public class UserProfileApiModule implements Module {
+import com.spotlight.platform.userprofile.api.model.configuration.UserProfileApiConfiguration;
+import ru.vyarus.dropwizard.guice.module.support.DropwizardAwareModule;
+
+public class UserProfileApiModule extends DropwizardAwareModule<UserProfileApiConfiguration> {
     @Override
-    public void configure(Binder binder) {
-        binder.install(new JsonModule());
-        binder.install(new ProfileModule());
+    public void configure() {
+        install(new JsonModule());
+//        install(new ProfileModule());
+        install(new MongoModule());
     }
 }
